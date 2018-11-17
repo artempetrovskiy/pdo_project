@@ -5,6 +5,8 @@ require_once "..\\vendor\\autoload.php";
 use PHPUnit\Framework\TestCase;
 use PHPUnit\DbUnit\TestCaseTrait;
 
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
+
 class PDOTest extends TestCase
 {
     use TestCaseTrait;
@@ -15,8 +17,6 @@ class PDOTest extends TestCase
     public function getConnection()
     {
         $pdo = new PDO('mysql:dbname=todos; host=127.0.0.1', 'root', '');
-
-        var_dump($pdo);
 
         return $this->createDefaultDBConnection($pdo, ':memory:');
 
@@ -33,7 +33,7 @@ class PDOTest extends TestCase
 
     public function test()
     {
-
+        $mock = $this->getMockBuilder(FileNotFoundException::class);
 
         $this->assertTrue(true);
     }
